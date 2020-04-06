@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package os_project_priority;
+import gui.ganttchart;
+import java.awt.Color;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.JFrame;
 /**
  *
  * @author Gerges hanna FCI-H
@@ -26,7 +29,13 @@ public class OS_Project_priority {
         Operations op=new Operations(5);
         
         
-            
+        JFrame frame = new JFrame();
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setContentPane(new ganttchart());
+      frame.setSize(1500, 720);
+      frame.setBackground(Color.LIGHT_GRAY);
+      frame.setVisible(true);    
+        
             
     }
     
