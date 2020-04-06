@@ -26,7 +26,7 @@ public class OS_Project_priority {
         Info.list.add(new Info("p3", 2, 3));
         Info.list.add(new Info("p4", 1, 3));
         Info.list.add(new Info("p5", 5, 2));
-        Operations op=new Operations(5);
+        Operations op=new Operations(5,5);
         
         
         JFrame frame = new JFrame();
@@ -35,8 +35,8 @@ public class OS_Project_priority {
       frame.setSize(1500, 720);
       frame.setBackground(Color.LIGHT_GRAY);
       frame.setVisible(true);    
-        
-            
+     
+        System.out.println(Info.finalList.get(3).getRepeat());
     }
     
 }

@@ -22,6 +22,10 @@ public class Info {
     private int start;
     private int stop;
     private int repeat;
+    private int turnaroundTime ;
+    private int waitingTime;
+    private int responseTime ;
+    
 
     public Info(String Pname, int BT, int Priority) {
         this.Pname = Pname;
@@ -84,6 +88,30 @@ public class Info {
 
     public void setRepeat(int repeat) {
         this.repeat = repeat;
+    }
+
+    public int getTurnaroundTime() {
+        return turnaroundTime;
+    }
+
+    public void setTurnaroundTime(int turnaroundTime) {
+        this.turnaroundTime = turnaroundTime;
+    }
+
+    public int getWaitingTime() {
+        return waitingTime;
+    }
+
+    public void setWaitingTime(int waitingTime) {
+        this.waitingTime = waitingTime;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
     }
     
     

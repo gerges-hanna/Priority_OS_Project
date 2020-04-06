@@ -5,6 +5,7 @@
  */
 package os_project_priority;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Comparator;
  */
 public class Operations {
 
-    public Operations(int split) {
+    public Operations(int split, int processNum) {
         this.sortList();
             this.CountRepeat();
             this.filter(split);
@@ -144,4 +145,72 @@ public class Operations {
                 System.out.println(Info.finalList.get(i).getPname()+" f "+Info.finalList.get(i).getBT()+" "+Info.finalList.get(i).getPriority()+" "+Info.finalList.get(i).getStart()+" "+Info.finalList.get(i).getStop());
             }
     }
-}
+    
+    public  ArrayList<Info> schudlingTime(int processNum){
+        ArrayList<Info> arr = new ArrayList<Info>();
+        for(int i = 0; i< processNum;i++){
+            Info f = new Info();
+            f.setPname("p"+i+1);
+            int repeat = -1 ;
+            for(int j = 0; i< processNum;j++){
+                 if(Info.finalList.get(j).getPname().equalsIgnoreCase(f.getPname())){
+                     repeat++;
+                 }
+           
+            }//for 2
+            
+            f.setRepeat(repeat);
+            arr.add(f);
+            
+            for (int k = 0 ; k < Info.finalList.size() ; k++) {
+                if(Info.finalList.get(k).getPname().equals(arr.get(i).getPname() )){
+                    arr.get(i).setBT( arr.get(i).getBT() + Info.finalList.get(k).getBT());
+                    if(arr.get(i).getRepeat() == repeat){
+                        arr.get(i).setWaitingTime(Info.finalList.get(k).getStart());
+                        arr.get(i).setRepeat(arr.get(i).getRepeat()-1);
+                    }
+                    else if(arr.get(i).getRepeat() == 0 && repeat > 0 ){
+                        arr.get(i).setTurnaroundTime(Info.finalList.get(k).getStop());
+                    }
+                    else{
+                        arr.get(i).setWaitingTime(Info.finalList.get(k).getStart());
+                        arr.get(i).setTurnaroundTime(Info.finalList.get(k).getStop());
+                    }
+                    
+                }
+            }//for 3
+            arr.get(i).setResponseTime(arr.get(i).getTurnaroundTime()-arr.get(i).getBT());
+            
+        }//for1
+        
+        
+        
+        return arr ;
+    }
+    
+    public int[] schudlingAvgTime(ArrayList<Info> processArr , int processNum){
+        int [] arr  = new int[3];
+        int avgWitingT  = 0, avgTurnaroundT= 0 , avgResponseT = 0 ;
+        for(int i = 0 ; i < processNum ; i++ ){
+            avgWitingT += processArr.get(i).getWaitingTime();
+        }
+        
+        for(int i = 0 ; i < processNum ; i++ ){
+            avgTurnaroundT += processArr.get(i).getTurnaroundTime();
+        }
+         
+        for(int i = 0 ; i < processNum ; i++ ){
+            avgResponseT += processArr.get(i).getResponseTime();
+        }
+        
+        avgWitingT = avgWitingT / processNum;
+        avgTurnaroundT = avgTurnaroundT / processNum;
+        avgResponseT = avgResponseT /processNum ;
+        
+        arr[0] = avgWitingT;
+        arr[1] = avgTurnaroundT;
+        arr[2] = avgResponseT;
+        return arr ;
+    }
+    
+}//end class
