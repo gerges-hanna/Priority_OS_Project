@@ -14,6 +14,8 @@ import java.util.Comparator;
  */
 public class Operations {
 
+    public static int split;
+    public static int numPriority;
     public Operations(int split, int processNum) {
         this.sortList();
             this.CountRepeat();

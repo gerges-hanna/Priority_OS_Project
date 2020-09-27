@@ -6,6 +6,7 @@
 package gui;
 
 import javax.swing.JOptionPane;
+import os_project_priority.Operations;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         this.setSize(900, 720);
         setLocationRelativeTo(null);
-        spCount.requestFocus();
+        pCount.requestFocus();
         btn1.setEnabled(false);
     }
 
@@ -36,12 +37,12 @@ public class Home extends javax.swing.JFrame {
         popupMenu1 = new java.awt.PopupMenu();
         popupMenu2 = new java.awt.PopupMenu();
         jLabel1 = new javax.swing.JLabel();
-        spCount = new javax.swing.JSpinner();
+        pCount = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btn1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        spCount1 = new javax.swing.JSpinner();
+        spCount = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -55,7 +56,7 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome");
 
-        spCount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        pCount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(167, 238, 238));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -85,7 +86,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        spCount1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        spCount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(167, 238, 238));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -107,8 +108,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spCount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pCount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spCount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,14 +135,14 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spCount, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pCount, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spCount, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
@@ -154,13 +155,15 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int count1 =(int)spCount.getValue();
-        int count2 =(int)spCount1.getValue();
+        int count1 =(int)pCount.getValue();
+        int count2 =(int)spCount.getValue();
        if(count1>0 && count2>0){
             if(count1<100)
             {
+                Operations.numPriority=count1;
+                Operations.split=count2;
+            pCount.setEnabled(false);
             spCount.setEnabled(false);
-            spCount1.setEnabled(false);
             btn1.setEnabled(true);
             }
         else { JOptionPane.showMessageDialog(this, "Warning ! Very High Number of Processes");}
@@ -174,14 +177,14 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        pCount.setEnabled(true);
         spCount.setEnabled(true);
-        spCount1.setEnabled(true);
         btn1.setEnabled(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        numberOfSteps = (int)spCount.getValue();
+        numberOfSteps = (int)pCount.getValue();
         this.dispose();
         SecondPage s = new SecondPage();
         s.setVisible(true);
@@ -232,9 +235,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JSpinner pCount;
     private java.awt.PopupMenu popupMenu1;
     private java.awt.PopupMenu popupMenu2;
     private javax.swing.JSpinner spCount;
-    private javax.swing.JSpinner spCount1;
     // End of variables declaration//GEN-END:variables
 }

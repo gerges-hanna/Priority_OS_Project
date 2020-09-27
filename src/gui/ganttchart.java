@@ -20,7 +20,7 @@ public class ganttchart extends JPanel {
     
     
     public void init(){
-        setSize(1500,720);
+        setSize(1280,720);
     }
     
     public void paint(Graphics g){
